@@ -4,7 +4,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Dialogs 1.1
 
-Window {
+ApplicationWindow {
     id: root
     visible: true
     title: qsTr("Analyze GPX file")

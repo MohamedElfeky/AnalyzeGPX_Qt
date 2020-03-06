@@ -19,6 +19,7 @@ TreeView {
          Text {
              anchors.fill: parent
              elide: styleData.elideMode
+//             color: styleColor
              text: styleData.value
          }
      }
