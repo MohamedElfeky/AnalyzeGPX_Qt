@@ -96,7 +96,8 @@ const QString GarminTreeModel::getPathFromTreeNodeFromIndex(QModelIndex index) c
 {
     if (index.parent().isValid()) {
         // A gpx file has been selected
-        return (static_cast<GarminTreeNode*>(index.internalPointer()))->fullPath();
+        GarminTreeNode* node = static_cast<GarminTreeNode*>(index.internalPointer());
+        return node->fullPath();
     }
     return QString();
 }
