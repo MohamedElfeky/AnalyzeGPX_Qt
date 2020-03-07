@@ -35,6 +35,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    Licences/BSD-4 License.txt \
+    Licences/BSD-4 License.txt \
+    Licences/gpl-3.0.txt \
+    Licences/lgpl-3.0.txt \
     README.md
 
 INCLUDEPATH += $$PWD/Controller $$PWD/Model
