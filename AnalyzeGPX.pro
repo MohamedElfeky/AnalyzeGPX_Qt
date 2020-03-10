@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Controller/controller.cpp \
+        Licences/licences.cpp \
         Model/garmingpxfile.cpp \
         Model/garminlistmodel.cpp \
         Model/garmintreemodel.cpp \
@@ -36,7 +37,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Licences/BSD-4 License.txt \
-    Licences/BSD-4 License.txt \
     Licences/gpl-3.0.txt \
     Licences/lgpl-3.0.txt \
     README.md
@@ -45,7 +45,15 @@ INCLUDEPATH += $$PWD/Controller $$PWD/Model
 
 HEADERS += \
     Controller/controller.h \
+    Licences/licences.h \
     Model/garmingpxfile.h \
     Model/garminlistmodel.h \
     Model/garmintreemodel.h \
     Model/garmintreenode.h
+
+macx {
+    ICON = Icons/AppIcon.icns
+}
+
+OTHER_FILES += \
+    Licences/lgpl-3.0.txt
