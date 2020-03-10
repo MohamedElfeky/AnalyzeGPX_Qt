@@ -2,7 +2,17 @@ import QtQuick 2.0
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
-import QtQuick.Dialogs 1.1
+import QtQuick.Dialogs 1.3
+
+
+// Qt bug on Mac of the MessageDialog
+// Either set the modality to Qt.ApplicationModal or
+// wrap the "ApplicationWindow" in an "Item", so
+// that a MessageDialog can be shown as a sepeated window.
+// In order that the ApplicationWindow is shown,
+// "Component.onCompleted: show()" has to be called
+// And in order that the MessageDialog can be referenced
+// a property alias is needed "property alias aboutMessage: aboutMessage"
 
 ApplicationWindow {
     id: root
@@ -12,6 +22,22 @@ ApplicationWindow {
     width: 1024
     minimumHeight: openFileButton.height + 200
     minimumWidth: openFileButton.width + 400
+
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("&Help")
+
+            MenuItem {
+                text: qsTr("About");
+                onTriggered: aboutMessage.open()
+            }
+
+            //            Action {
+            //                         onTriggered: aboutMessage.open()
+            //            }
+
+        }
+    }
 
     SplitView {
         // On the left a tree view is shown for the directories and gpx files
@@ -138,5 +164,17 @@ ApplicationWindow {
             controller.onOpenFile(openFileDialog.fileUrl)
         }
     }
+    MessageDialog {
+        id: aboutMessage
+        title: "Licences used"
+        modality: Qt.ApplicationModal
+        text: {
+            "Copyright (C) 2020 Manfred Kern. All rights reserved.\n" +
+            "Contact: manfred.kern@gmail.com \n" +
+            "Under BSD license \n" +
+            "Additional used license LGPLv3"
+        }
+    }
 
 }
+
