@@ -35,14 +35,22 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-#ifndef LICENCES_H
-#define LICENCES_H
+#ifndef LICENSES_H
+#define LICENSES_H
+
+#include <QString>
+#include <memory>
 
 
-class Licences
+class Licenses
 {
 public:
-    Licences();
+    Licenses();
+
+    void readLicences();
+
+private:
+    std::unique_ptr<QString> m_licenceText;
 };
 
-#endif // LICENCES_H
+#endif // LICENSES_H

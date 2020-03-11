@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>ListHeader.qml</file>
-        <file>RteTrkWptListView.qml</file>
-        <file>main.qml</file>
-        <file>GpxFilesTreeView.qml</file>
+        <file>Ui/GpxFilesTreeView.qml</file>
+        <file>Ui/ListHeader.qml</file>
+        <file>Ui/main.qml</file>
+        <file>Ui/RteTrkWptListView.qml</file>
     </qresource>
 </RCC>

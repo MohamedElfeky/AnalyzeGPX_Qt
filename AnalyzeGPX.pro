@@ -15,10 +15,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Controller/controller.cpp \
-        Licences/licences.cpp \
+        Licenses/licenses.cpp \
         Model/garmingpxfile.cpp \
-        Model/garminlistmodel.cpp \
-        Model/garmintreemodel.cpp \
+        ModelView/garminlistmodel.cpp \
+        ModelView/garmintreemodel.cpp \
         Model/garmintreenode.cpp \
         main.cpp
 
@@ -36,24 +36,30 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Licences/BSD-4 License.txt \
-    Licences/gpl-3.0.txt \
-    Licences/lgpl-3.0.txt \
+    Licenses/02_License_BSD-4 License.txt \
+    Licenses/03_License_lgpl-3.0.txt
     README.md
 
-INCLUDEPATH += $$PWD/Controller $$PWD/Model
+INCLUDEPATH += $$PWD/Controller $$PWD/Model $$PWD/ModelView
 
 HEADERS += \
     Controller/controller.h \
-    Licences/licences.h \
+    Licenses/licenses.h \
     Model/garmingpxfile.h \
-    Model/garminlistmodel.h \
-    Model/garmintreemodel.h \
+    ModelView/garminlistmodel.h \
+    ModelView/garmintreemodel.h \
     Model/garmintreenode.h
+
+#OTHER_FILES += \
+#    Licences/lgpl-3.0.txt
+
+LICENSE_FILES.files = $$PWD/Licenses/02_License_BSD-4.txt \
+                      $$PWD/Licenses/03_License_lgpl-3.0.txt
+LICENSE_FILES.path = Contents/Resources
 
 macx {
     ICON = Icons/AppIcon.icns
+    QMAKE_BUNDLE_DATA += LICENSE_FILES
 }
 
-OTHER_FILES += \
-    Licences/lgpl-3.0.txt
+

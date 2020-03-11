@@ -35,9 +35,25 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-#include "licences.h"
+#include "licenses.h"
 
-Licences::Licences()
+Licenses::Licenses()
 {
+    m_licenceText = std::make_unique<QString>();
+}
 
+void Licenses::readLicences()
+{
+    // 1. Read preamble text
+
+    // 2. Read licence text files from disk in alphanumeric order
+    //      Proppsal how to name the files
+    //      1. 01_Licence_"Own License Text"
+    //      2. 02_Licence_"Additional licence text 1
+    //      3. 03_Licence_"Additional licence text 2
+    //      ....
+    //      4. 99_"Closing Text"
+    //
+
+    m_licenceText->length();
 }
