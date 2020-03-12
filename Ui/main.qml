@@ -29,7 +29,11 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("About");
-                onTriggered: aboutMessage.open()
+                onTriggered: {
+                    aboutMessage.detailedText = controller.onShowAboutMessage()
+                    aboutMessage.open()
+                }
+//                onTriggered: aboutMessage.open()
             }
 
             //            Action {
@@ -165,9 +169,11 @@ ApplicationWindow {
         }
     }
     MessageDialog {
+        // TODO: Problem with dark mode
         id: aboutMessage
         title: "Licences used"
         modality: Qt.ApplicationModal
+
         text: {
             "Copyright (C) 2020 Manfred Kern. All rights reserved.\n" +
             "Contact: manfred.kern@gmail.com \n" +
@@ -175,6 +181,5 @@ ApplicationWindow {
             "Additional used license LGPLv3"
         }
     }
-
 }
 

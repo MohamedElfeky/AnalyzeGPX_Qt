@@ -20,6 +20,7 @@ SOURCES += \
         ModelView/garminlistmodel.cpp \
         ModelView/garmintreemodel.cpp \
         Model/garmintreenode.cpp \
+        Utils/resoucehandling.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -36,8 +37,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Licenses/02_License_BSD-4 License.txt \
-    Licenses/03_License_lgpl-3.0.txt
+    Licenses/01_License_BSD-4 License.txt \
+    Licenses/03_License_lgpl-3.0.txt \
+    qtquickcontrols2.conf
     README.md
 
 INCLUDEPATH += $$PWD/Controller $$PWD/Model $$PWD/ModelView
@@ -48,18 +50,19 @@ HEADERS += \
     Model/garmingpxfile.h \
     ModelView/garminlistmodel.h \
     ModelView/garmintreemodel.h \
-    Model/garmintreenode.h
+    Model/garmintreenode.h \
+    Utils/resoucehandling.h
 
-#OTHER_FILES += \
-#    Licences/lgpl-3.0.txt
 
-LICENSE_FILES.files = $$PWD/Licenses/02_License_BSD-4.txt \
+LICENSE_FILES.files = $$PWD/Licenses/01_License_BSD-4.txt \
                       $$PWD/Licenses/03_License_lgpl-3.0.txt
 LICENSE_FILES.path = Contents/Resources
 
 macx {
     ICON = Icons/AppIcon.icns
     QMAKE_BUNDLE_DATA += LICENSE_FILES
+    # Needed to enfore light mode. Qt has still problems with dartk mode
+    QMAKE_INFO_PLIST = Info.plist
 }
 
 

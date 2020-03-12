@@ -62,14 +62,14 @@ void GarminTreeModel::loadGarminDevices()
     QList<QStorageInfo> mountedVolumes {QStorageInfo::mountedVolumes()};
     for (auto vol : mountedVolumes) {
         QDir topLevelDir = QDir(vol.rootPath());
-        topLevelDir.setFilter(QDir::Dirs | QDir::NoDotDot | QDir::NoSymLinks);
+        topLevelDir.setFilter(QDir::Dirs | QDir::QDir::NoDotAndDotDot | QDir::NoSymLinks);
         QFileInfoList topLevelList = topLevelDir.entryInfoList();
 
         // Check if a Garmin folder is at top level
         for (auto info : topLevelList) {
             if (QDir(info.absoluteFilePath()).dirName().toLower() == "garmin") {
                 QDir garminDir = QDir(info.absoluteFilePath());
-                garminDir.setFilter(QDir::Dirs | QDir::NoDotDot | QDir::NoDot | QDir::NoSymLinks);
+                garminDir.setFilter(QDir::Dirs | QDir::QDir::NoDotAndDotDot | QDir::NoSymLinks);
                 QFileInfoList garminFolderList = garminDir.entryInfoList();
 
                 // Check if a GPX folder is found in the Garmin folder

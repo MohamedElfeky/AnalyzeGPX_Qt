@@ -47,7 +47,7 @@ class Licenses
 public:
     Licenses();
 
-    void readLicences();
+    static QString readLicences();
 
 private:
     std::unique_ptr<QString> m_licenceText;

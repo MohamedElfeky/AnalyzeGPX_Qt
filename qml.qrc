@@ -4,5 +4,8 @@
         <file>Ui/ListHeader.qml</file>
         <file>Ui/main.qml</file>
         <file>Ui/RteTrkWptListView.qml</file>
+        <file>Licenses/03_License_lgpl-3.0.txt</file>
+        <file>Licenses/01_License_BSD-4.txt</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

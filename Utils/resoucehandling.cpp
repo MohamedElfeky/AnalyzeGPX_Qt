@@ -35,53 +35,24 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-#include <QDir>
-#include <QDebug>
-#include "licenses.h"
+#include "resoucehandling.h"
 
-Licenses::Licenses()
+#include <QCoreApplication>
+
+ResouceHandling::ResouceHandling()
 {
-    m_licenceText = std::make_unique<QString>();
+
 }
 
-QString Licenses::readLicences()
+QString ResouceHandling::getResourcesPath()
 {
-    // 1. Read preamble text
-
-    // ....
-
-    // 2. Read licence text files from disk in alphanumeric order
-    //      Proppsal how to name the files
-    //      1. 01_Licence_"Own License Text"
-    //      2. 02_Licence_"Additional licence text 1
-    //      3. 03_Licence_"Additional licence text 2
-    //      ....
-    //      4. 99_"Closing Text"
-    //
-
-    // There are two options:
-    // a) Distribute the license files in a platform native manner
-    // b) Use Qt resource files system
-
-    // We use option b)
-    const QString resDir {"://Licenses"};
-    QDir licenseDir = QDir(resDir);
-    QStringList nameFilters({"*License*", "*Licence*"});
-    licenseDir.setNameFilters(nameFilters);
-    licenseDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
-    QStringList infoList = licenseDir.entryList();
-
-    QString licenseText;
-
-    QFile licenseFile;
-    for (const QString& item : infoList) {
-        licenseText += "\n";
-        licenseFile.setFileName(resDir + "/" + item);
-        licenseFile.open(QIODevice::ReadOnly | QIODevice::Text);
-        QTextStream in(&licenseFile);
-        licenseText += in.readAll();
-        licenseFile.close();
-    }
-
-    return licenseText;
+#if defined(Q_OS_WIN)
+    return QCoreApplication::applicationDirPath() + "/";
+#elif defined(Q_OS_OSX)
+    return QCoreApplication::applicationDirPath() + "/../Resources/";
+#elif defined(Q_OS_LINUX)
+    return QCoreApplication::applicationDirPath() + "/../share/yourapplication/";
+#else
+    return QCoreApplication::applicationDirPath() + "/";
+#endif
 }

@@ -77,6 +77,11 @@ public:
     ///
     Q_INVOKABLE void onTreeviewClicked(QModelIndex index);
 
+    ///
+    /// \brief Shows the About Message Dialog with licenses used in the app
+    ///
+    Q_INVOKABLE QString onShowAboutMessage();
+
     // -------------  Getters for the model needed by the UI ------------
 
     GarminListModel& garminListModel(); // Listviews in the splitview

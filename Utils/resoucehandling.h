@@ -35,53 +35,18 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-#include <QDir>
-#include <QDebug>
-#include "licenses.h"
+#ifndef RESOUCEHANDLING_H
+#define RESOUCEHANDLING_H
 
-Licenses::Licenses()
+#include <QString>
+
+
+class ResouceHandling
 {
-    m_licenceText = std::make_unique<QString>();
-}
+public:
+    ResouceHandling();
 
-QString Licenses::readLicences()
-{
-    // 1. Read preamble text
+    static QString getResourcesPath();
+};
 
-    // ....
-
-    // 2. Read licence text files from disk in alphanumeric order
-    //      Proppsal how to name the files
-    //      1. 01_Licence_"Own License Text"
-    //      2. 02_Licence_"Additional licence text 1
-    //      3. 03_Licence_"Additional licence text 2
-    //      ....
-    //      4. 99_"Closing Text"
-    //
-
-    // There are two options:
-    // a) Distribute the license files in a platform native manner
-    // b) Use Qt resource files system
-
-    // We use option b)
-    const QString resDir {"://Licenses"};
-    QDir licenseDir = QDir(resDir);
-    QStringList nameFilters({"*License*", "*Licence*"});
-    licenseDir.setNameFilters(nameFilters);
-    licenseDir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
-    QStringList infoList = licenseDir.entryList();
-
-    QString licenseText;
-
-    QFile licenseFile;
-    for (const QString& item : infoList) {
-        licenseText += "\n";
-        licenseFile.setFileName(resDir + "/" + item);
-        licenseFile.open(QIODevice::ReadOnly | QIODevice::Text);
-        QTextStream in(&licenseFile);
-        licenseText += in.readAll();
-        licenseFile.close();
-    }
-
-    return licenseText;
-}
+#endif // RESOUCEHANDLING_H

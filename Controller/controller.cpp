@@ -37,6 +37,7 @@
 ****************************************************************************/
 #include <QDebug>
 #include "controller.h"
+#include "Licenses/licenses.h"
 
 Controller::Controller(QObject* parent)
 {
@@ -92,6 +93,11 @@ void Controller::onTreeviewClicked(QModelIndex index)
     }
 
     m_garminListModel.parse(f);
+}
+
+QString Controller::onShowAboutMessage()
+{
+    return Licenses::readLicences();
 }
 
 // ------------- Models referenced by UI (QML) -------------------
