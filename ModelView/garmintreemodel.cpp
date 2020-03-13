@@ -56,7 +56,7 @@ void GarminTreeModel::loadGarminDevices()
     beginResetModel();
 
     // First remove info from last "Load Garmin devices"
-    m_root->children().clear();
+    m_root->resetTreeNode();
 
     // Find all mounted volumes
     QList<QStorageInfo> mountedVolumes {QStorageInfo::mountedVolumes()};
@@ -89,6 +89,7 @@ void GarminTreeModel::loadGarminDevices()
         }
     }
 
+    m_root->dumpTree();
     endResetModel();
 }
 

@@ -62,6 +62,9 @@ public:
     void appendChild(shared_ptr<GarminTreeNode> child);
     size_t childCount() const;
 
+    // reset GarminTreeNode to its initial values
+    void resetTreeNode();
+
     // ----- Getters -----
     QString name() const;
     QString fullPath() const;

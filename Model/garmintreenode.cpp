@@ -59,6 +59,14 @@ size_t GarminTreeNode::childCount() const
     return m_children.size();
 }
 
+void GarminTreeNode::resetTreeNode()
+{
+    m_name = "";
+    m_fullPath = "";
+    m_children.clear();
+    m_parent.reset();
+}
+
 // ----- Getters -----
 
 QString GarminTreeNode::name() const
